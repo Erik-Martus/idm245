@@ -43,3 +43,16 @@ h2 {
 h3 {
   text-align: center;
 }
+
+footer p {
+  text-align: center;
+}
+
+.foot_link:link, .foot_link:visited {
+  color: #fff;
+  margin-right: .5rem;
+}
+
+.foot_link:hover, .foot_link:active, .foot_link:focus {
+  color: #63acf0;
+}

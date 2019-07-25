@@ -37,7 +37,7 @@
         game.load.spritesheet('help_btn', 'img/button/help_button.png', 312, 152);
         game.load.spritesheet('menu_btn', 'img/button/menu_button.png', 356, 152);
         game.load.spritesheet('play_btn', 'img/button/play_button.png', 356, 170);
-        game.load.spritesheet('play-again_btn', 'img/button/back_button.png', 654, 170);
+        game.load.spritesheet('play-again_btn', 'img/button/play-again_button.png', 654, 170);
 
         // load help assets
         game.load.image('controls', 'img/help/controls.png');
@@ -69,6 +69,7 @@
 
         // load other imgs
         game.load.image('title', 'img/rainfall_title.png');
+        game.load.image('survived', 'img/you_survived.png')
       } // end function preload
 
       function create() {
@@ -84,22 +85,38 @@
         var spGround = game.add.sprite(0, 939, 'ground_menu');
         // ---- End scenery ----
 
-        var spTitle = game.add.sprite(game.world.centerX, 260, 'title');
-        spTitle.anchor.setTo(0.5, 0);
         var spPlayer = game.add.sprite(game.world.centerX, 889, 'player');
         spPlayer.anchor.setTo(0.5, 0);
 
-        // Add buttons
-        var btPlay = game.add.button(game.world.centerX, 405, 'play_btn', actionOnClick, this, 1, 0, 2);
-        btPlay.anchor.setTo(0.5, 0);
+        var spSurvived = game.add.sprite(game.world.centerX, 216, 'survived');
+        spSurvived.anchor.setTo(0.5, 0);
 
-        var btHelp = game.add.button(game.world.centerX, 580, 'help_btn', actionOnClick, this, 1, 0, 2);
-        btHelp.anchor.setTo(0.5, 0);
+        // Add buttons
+        var btPlay_again = game.add.button(game.world.centerX, 550, 'play-again_btn', actionOnClick, this, 1, 0, 2);
+        btPlay_again.anchor.setTo(0.5, 0);
+
+        var btMenu = game.add.button(game.world.centerX, 730, 'menu_btn', actionOnClick, this, 1, 0, 2);
+        btMenu.anchor.setTo(0.5, 0);
+
+        // text
+        var textScore = "Score: 9999";
+        var generalStyle = {
+          fontSize: "80px",
+          fill: "#ffffff",
+          height: "80px",
+          font: "35px Arial",
+          fill: "black",
+          alignment: "left"
+        };
+
+        // create text
+        var txScore = game.add.text(game.world.centerX, 440, textScore, generalStyle);
+        txScore.anchor.setTo(0.5, 0);
       } // end function create
 
       function actionOnClick() {
         alert('Button clicked');
-      }
+      } // end actionOnClick
     } // end window.onload
   </script>
 
