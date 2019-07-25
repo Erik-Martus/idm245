@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Erik Martus | Rainfall</title>
+
+  <script src="phaser.min.js"></script>
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div id="phaser-canvas"></div>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      var game = new Phaser.Game(960, 720, Phaser.AUTO, 'phaser-canvas', {
+        preload: preload,
+        create: create
+      });
+    } // end window.onload
+  </script>
+</body>
+
+</html>
