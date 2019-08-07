@@ -100,18 +100,20 @@
 
         // text
         var textScore = "Score: 9999";
+        var textTime = "Time: 02:00"
         var generalStyle = {
-          fontSize: "80px",
+          // fontSize: "80px",
           fill: "#ffffff",
-          height: "80px",
+          // height: "80px",
           font: "35px Arial",
-          fill: "black",
           alignment: "left"
         };
 
         // create text
         var txScore = game.add.text(game.world.centerX, 440, textScore, generalStyle);
         txScore.anchor.setTo(0.5, 0);
+        var txTime = game.add.text(game.world.centerX, 490, textTime, generalStyle);
+        txTime.anchor.setTo(0.5, 0);
       } // end function create
 
       function actionOnClick() {

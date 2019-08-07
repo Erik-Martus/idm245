@@ -140,19 +140,32 @@
         var game_over = "GAME OVER";
         var final_score = "FINAL SCORE"
         var final_points = "100 POINTS";
+        var survived = "SURVIVED";
+        var time = "00:25";
         var generalStyle = {
-          fontSize: "80px",
+          // fontSize: "80px",
           fill: "#ffffff",
-          height: "80px",
+          // height: "80px",
           font: "35px Arial",
+          alignment: "left"
+        };
+        var headingStyle = {
+          // fontSize: "80px",
+          fill: "#ffffff",
+          // height: "80px",
+          font: "45px Arial",
           alignment: "left"
         };
 
         // create text
-        var txFinal_score = game.add.text(game.world.centerX, 312, final_score, generalStyle);
+        var txFinal_score = game.add.text(game.world.centerX, 310, final_score, headingStyle);
         txFinal_score.anchor.setTo(0.5, 0);
-        var txFinal_points = game.add.text(game.world.centerX, 400, final_points, generalStyle);
+        var txFinal_points = game.add.text(game.world.centerX, 360, final_points, generalStyle);
         txFinal_points.anchor.setTo(0.5, 0);
+        var txSurvival_time = game.add.text(game.world.centerX, 430, survived, headingStyle);
+        txSurvival_time.anchor.setTo(0.5, 0);
+        var txTime = game.add.text(game.world.centerX, 480, time, generalStyle);
+        txTime.anchor.setTo(0.5, 0);
 
       } // end function create
 
