@@ -1,11 +1,12 @@
 // this file is a predetermined file for loading global variables, file MUST be named Boot
 var gameObj = {
   // Global variables are decleared here!
-  gScore: 100,
-  gTime: "00:00"
+  gScore: 0,
+  gTime: "01:20"
+  // When you change this to 02:00 make sure to change it in Lose.js and Win.js
 };
 
-gameObj.Boot = function (game) { };
+gameObj.Boot = function (game) {};
 
 gameObj.Boot.prototype = {
   preload: function () {

@@ -1,4 +1,9 @@
-gameObj.Play = function (game) { };
+gameObj.Play = function (game) {
+  var txScore;
+  var timerObj;
+  var timerSeconds;
+  var txTime;
+};
 
 gameObj.Play.prototype = {
   create: function () {
@@ -35,8 +40,8 @@ gameObj.Play.prototype = {
 
     // Add text
     var showers = "Rain Shower: 02";
-    var score = "Score: 100";
-    var time = "01:15";
+    var score = gameObj.gScore;
+    var time = gameObj.gTime;
 
     var headerStyle = {
       fill: "#ffffff",
@@ -56,17 +61,54 @@ gameObj.Play.prototype = {
     var txShower = this.add.text(400, 920, showers, gameBarStyle);
 
     // Add header text
-    var txScore = this.add.text(20, 14, score, headerStyle);
-    var txTime = this.add.text(526, 14, time, headerStyle);
+    txScore = this.add.text(20, 14, score, headerStyle);
+    txTime = this.add.text(526, 14, time, headerStyle);
 
     // Add temp buttons
+    var btPoints = this.add.button(230, 800, 'points_btn', this.clickPointsFunct, this, 1, 0, 2);
     var btWin = this.add.button(20, 800, 'btn_win', this.clickWinFunct, this, 1, 0, 2);
     var btLose = this.add.button(130, 800, 'btn_lose', this.clickLoseFunct, this, 1, 0, 2);
+
+    // Timer setup
+    timerSeconds = 80; // 01:20 minutes = 80 seconds
+    timerObj = this.time.create(false);
+    timerObj.loop(1000, this.updateTimerFunct, this);
+    timerObj.start();
   },
   clickWinFunct: function () {
     this.state.start('Win');
   },
   clickLoseFunct: function () {
     this.state.start('Lose');
+  },
+  clickPointsFunct: function () {
+    console.log('pointsFun called');
+    gameObj.gScore += 10;
+    txScore.text = gameObj.gScore;
+  },
+  updateTimerFunct: function () {
+    timerSeconds--;
+    displayMin = Math.floor(timerSeconds / 60);
+    displaySec = Math.floor(timerSeconds) % 60;
+    if (displayMin < 10) {
+      displayMin = "0" + displayMin;
+    }
+    if (displaySec < 10) {
+      displaySec = "0" + displaySec;
+    }
+
+    if (timerSeconds == 0) {
+      this.checkScoreFunct();
+    }
+
+    gameObj.gTime = displayMin + ":" + displaySec;
+    txTime.text = gameObj.gTime;
+  },
+  checkScoreFunct: function () {
+    if (gameObj.gScore > 100) {
+      this.state.start('Win');
+    } else {
+      this.state.start('Lose');
+    }
   }
 }

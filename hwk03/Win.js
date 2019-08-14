@@ -1,4 +1,7 @@
-gameObj.Win = function (game) { };
+gameObj.Win = function (game) {
+  var txScore;
+  var txTime;
+};
 
 gameObj.Win.prototype = {
   create: function () {
@@ -29,12 +32,10 @@ gameObj.Win.prototype = {
     btMenu.anchor.setTo(0.5, 0);
 
     // text
-    var textScore = "SCORE: 9999";
-    var textTime = "TIME: 02:00"
+    textScore = "SCORE: " + gameObj.gScore;
+    textTime = "TIME: " + gameObj.gTime;
     var generalStyle = {
-      // fontSize: "80px",
       fill: "#ffffff",
-      // height: "80px",
       font: "35px Press Start 2P",
       alignment: "left"
     };
@@ -47,9 +48,13 @@ gameObj.Win.prototype = {
 
   },
   clickPlayAgainFunct: function () {
+    gameObj.gScore = 0;
+    gameObj.gTime = "01:20";
     this.state.start('Play');
   },
   clickMenuFunct: function () {
+    gameObj.gScore = 0;
+    gameObj.gTime = "01:20";
     this.state.start('Main');
   }
 }

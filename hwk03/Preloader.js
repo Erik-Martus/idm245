@@ -1,4 +1,4 @@
-gameObj.Preloader = function (game) { };
+gameObj.Preloader = function (game) {};
 
 gameObj.Preloader.prototype = {
   preload: function () {
@@ -29,6 +29,7 @@ gameObj.Preloader.prototype = {
     this.load.spritesheet('menu_btn', 'img/button/menu_button.png', 356, 152);
     this.load.spritesheet('play_btn', 'img/button/play_button.png', 356, 170);
     this.load.spritesheet('play-again_btn', 'img/button/play-again_button.png', 654, 170);
+    this.load.spritesheet('points_btn', 'img/button/points_button.png', 220, 81);
 
     // load help assets
     this.load.image('controls', 'img/help/controls.png');

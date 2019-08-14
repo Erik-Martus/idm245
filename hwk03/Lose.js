@@ -1,4 +1,7 @@
-gameObj.Lose = function (game) { };
+gameObj.Lose = function (game) {
+  var txTime;
+  var txScore;
+};
 
 gameObj.Lose.prototype = {
   create: function () {
@@ -34,8 +37,8 @@ gameObj.Lose.prototype = {
 
     // Add text
     var showers = "Rain Shower: 02";
-    var score = "Score: 100";
-    var time = "1:15";
+    // var score = gameObj.gScore;
+    // var time = gameObj.gText;
 
     var generalStyle = {
       fontSize: "80px",
@@ -46,6 +49,12 @@ gameObj.Lose.prototype = {
       alignment: "left"
     };
 
+    var headerStyle = {
+      fill: "#ffffff",
+      font: "80px Press Start 2P",
+      alignment: "left"
+    };
+
     // Add game bar items
     var heart01 = this.add.sprite(30, 909, 'heart_empty');
     var heart02 = this.add.sprite(88, 909, 'heart_empty');
@@ -53,8 +62,8 @@ gameObj.Lose.prototype = {
     var txShower = this.add.text(370, 909, showers);
 
     // Add header text
-    var txScore = this.add.text(20, 14, score, generalStyle);
-    var txTime = this.add.text(526, 14, time, generalStyle);
+    // txScore = this.add.text(20, 14, score, headerStyle);
+    // txTime = this.add.text(526, 14, time, generalStyle);
 
     // Add overlay
     var overlay_bkgr = this.add.sprite(0, 0, 'background_overlay');
@@ -69,9 +78,9 @@ gameObj.Lose.prototype = {
     // text
     var game_over = "GAME OVER";
     var final_score = "FINAL SCORE"
-    var final_points = "100 POINTS";
-    var survived = "SURVIVED";
-    var time = "00:25";
+    var final_points = gameObj.gScore + " POINTS";
+    var timeLeft = "TIME LEFT";
+    var time = gameObj.gTime;
     var generalStyle = {
       fill: "#ffffff",
       font: "35px Press Start 2P",
@@ -90,15 +99,19 @@ gameObj.Lose.prototype = {
     txFinal_score.anchor.setTo(0.5, 0);
     var txFinal_points = this.add.text(this.world.centerX, 360, final_points, generalStyle);
     txFinal_points.anchor.setTo(0.5, 0);
-    var txSurvival_time = this.add.text(this.world.centerX, 430, survived, headingStyle);
-    txSurvival_time.anchor.setTo(0.5, 0);
+    var txTime_left = this.add.text(this.world.centerX, 430, timeLeft, headingStyle);
+    txTime_left.anchor.setTo(0.5, 0);
     var txTime = this.add.text(this.world.centerX, 480, time, generalStyle);
     txTime.anchor.setTo(0.5, 0);
   },
   clickPlayAgainFunct: function () {
+    gameObj.gScore = 0;
+    gameObj.gTime = "01:20";
     this.state.start('Play');
   },
   clickMenuFunct: function () {
+    gameObj.gScore = 0;
+    gameObj.gTime = "01:20";
     this.state.start('Main');
   }
 }
