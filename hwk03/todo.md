@@ -2,9 +2,8 @@
 
 ## Final To Do List
 
-1. [ ] Change font everywhere to Press 2P
-2. [ ] Change font size of powerup titles on help screen
-
+- [ ] Change font everywhere to Press 2P
+- [ ] Change font size of powerup titles on help screen
 - [ ] Bind player movement to A and D
 - [ ] Change hearts to spritesheet
 - [ ] Randomly spawn raindrops and have them fall
@@ -14,4 +13,6 @@
 - [ ] Randomly spawn heat wave power up
 - [ ] Colliding with heat wave picks it up and displays on the bottom bar
 - [ ] Bind heat wave to J, pressing J will remove all raindrops from the screen
-- [ ] Randomly spawn
+- [ ] Randomly spawn umbrella power up
+- [ ] Colliding with umbrella picks it up and displays it on the bottom bar
+- [ ] Bind umbrella to L, pressing L will spawn a bar above player that blocks raindrops from hitting the player
