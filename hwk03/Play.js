@@ -3,12 +3,19 @@ gameObj.Play = function (game) {
   var timerObj;
   var timerSeconds;
   var txTime;
+
+  var spPlayer;
 };
 
 gameObj.Play.prototype = {
   create: function () {
     console.log("State - Play")
     this.stage.backgroundColor = '#330099';
+
+    this.physics.startSystem(Phaser.Physics.ARCADE);
+
+    // // Define movement speed
+    // this.MAX_SPEED = 500; // pixels/second
 
     // Add bkgr img to stage
     var spBackground = this.add.sprite(0, 0, 'background_dark');
@@ -18,10 +25,22 @@ gameObj.Play.prototype = {
     var spCloud_dark01 = this.add.sprite(29, 105, 'cloud_dark01');
     var spCloud_dark02 = this.add.sprite(360, 105, 'cloud_dark02');
     var spGround = this.add.sprite(0, 900, 'ground_game');
+
     // ---- End scenery ----
 
-    var spPlayer = this.add.sprite(this.world.centerX, 850, 'pl_dark');
+    // Add player
+    spPlayer = this.add.sprite(this.world.centerX, 850, 'pl_dark');
     spPlayer.anchor.setTo(0.5, 0);
+
+    this.physics.arcade.enable(spPlayer);
+
+    spPlayer.body.collideWorldBounds = true;
+
+    // spPlayer.game.physics.enable(spPlayer, Phaser.Physics.ARCADE);
+    // this.game.input.keyboard.addKeyCapture([
+    //   Phaser.Keyboard.LEFT,
+    //   Phaser.Keyboard.RIGHT
+    // ]);
 
     // Add game elements
     var spHeat_wave = this.add.sprite(546, 850, 'p-u_heat-wave');
@@ -74,6 +93,23 @@ gameObj.Play.prototype = {
     timerObj = this.time.create(false);
     timerObj.loop(1000, this.updateTimerFunct, this);
     timerObj.start();
+  },
+  update: function () {
+    // this.game.phyics.arcade.collide(this.spPlayer, this.spGround);
+
+    // if (this.leftInputIsActive()) {
+    //   spPlayer.body.velocity.x = -this.MAX_SPEED;
+    // } else if (this.rightInputIsActive()) {
+    //   spPlayer.body.velocity.x = this.MAX_SPEED;
+    // } else {
+    //   spPlayer.body.velocity.x = 0;
+    // }
+
+    if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+      spPlayer.x -= 6;
+    } else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+      spPlayer.x += 6;
+    }
   },
   clickWinFunct: function () {
     this.state.start('Win');
