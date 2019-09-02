@@ -3,8 +3,8 @@
 ## Final To Do List
 
 - [X] Bind player movement to A and D
-- [ ] Change font everywhere to Press 2P
-- [ ] Change font size of powerup titles on help screen
+- [X] Change font everywhere to Press 2P
+- [X] Change font size of powerup titles on help screen
 - [ ] Change hearts to spritesheet
 - [ ] Randomly spawn raindrops and have them fall
 - [ ] Collision with a raindrop causes player to lose a heart
