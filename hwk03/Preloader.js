@@ -1,4 +1,4 @@
-gameObj.Preloader = function (game) {};
+gameObj.Preloader = function (game) { };
 
 gameObj.Preloader.prototype = {
   preload: function () {
@@ -17,14 +17,8 @@ gameObj.Preloader.prototype = {
     // Load Google WebFont Loader script
     this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
-    // load bkgr imgs
-    this.load.image('background_dark', 'img/background/background_dark.png');
-    this.load.image('background_gray', 'img/background/background_gray.png');
-    this.load.image('background_light', 'img/background/background_light.png');
-    this.load.image('background_overlay', 'img/background/background_overlay.png');
-
     // load button assets
-    this.load.spritesheet('back_btn', 'img/button/back_button.png', 130, 64);
+    this.load.spritesheet('back_btn', 'img/button/back_button.png', 223, 79);
     this.load.spritesheet('help_btn', 'img/button/help_button.png', 312, 152);
     this.load.spritesheet('menu_btn', 'img/button/menu_button.png', 356, 152);
     this.load.spritesheet('play_btn', 'img/button/play_button.png', 356, 170);
@@ -32,11 +26,7 @@ gameObj.Preloader.prototype = {
     this.load.spritesheet('points_btn', 'img/button/points_button.png', 220, 81);
 
     // load help assets
-    this.load.image('controls', 'img/help/controls.png');
-    this.load.image('how-to-play', 'img/help/how-to-play.png');
-    this.load.image('instructions_powerups', 'img/help/instructions_powerups.png');
-    this.load.image('instructions', 'img/help/instructions.png');
-    this.load.image('scoring', 'img/help/scoring.png');
+    this.load.image('instructions', 'img/help/how_to_play.png')
 
     // load icon imgs
     this.load.spritesheet('icon_heat-wave', 'img/icon/icon_heat-wave.png', 56, 56);
@@ -64,10 +54,8 @@ gameObj.Preloader.prototype = {
     // load other imgs
     this.load.image('title', 'img/rainfall_title.png');
     this.load.image('survived', 'img/you_survived.png');
+    this.load.image('game_over', 'img/game_over.png')
 
-
-    this.load.spritesheet('btn_win', 'img/button/btn_win.png', 90, 90);
-    this.load.spritesheet('btn_lose', 'img/button/btn_lose.png', 90, 90);
   }, // end Preload
 
   create: function () {
