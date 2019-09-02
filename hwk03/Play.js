@@ -14,19 +14,10 @@ gameObj.Play.prototype = {
 
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
-    // // Define movement speed
-    // this.MAX_SPEED = 500; // pixels/second
-
-    // Add bkgr img to stage
-    var spBackground = this.add.sprite(0, 0, 'background_dark');
-    // ---- End bkgr img ----
-
     // Add scenery to stage
     var spCloud_dark01 = this.add.sprite(29, 105, 'cloud_dark01');
     var spCloud_dark02 = this.add.sprite(360, 105, 'cloud_dark02');
     var spGround = this.add.sprite(0, 900, 'ground_game');
-
-    // ---- End scenery ----
 
     // Add player
     spPlayer = this.add.sprite(this.world.centerX, 850, 'pl_dark');
@@ -35,12 +26,6 @@ gameObj.Play.prototype = {
     this.physics.arcade.enable(spPlayer);
 
     spPlayer.body.collideWorldBounds = true;
-
-    // spPlayer.game.physics.enable(spPlayer, Phaser.Physics.ARCADE);
-    // this.game.input.keyboard.addKeyCapture([
-    //   Phaser.Keyboard.LEFT,
-    //   Phaser.Keyboard.RIGHT
-    // ]);
 
     // Add game elements
     var spHeat_wave = this.add.sprite(546, 850, 'p-u_heat-wave');
@@ -83,28 +68,13 @@ gameObj.Play.prototype = {
     txScore = this.add.text(20, 14, score, headerStyle);
     txTime = this.add.text(526, 14, time, headerStyle);
 
-    // Add temp buttons
-    var btPoints = this.add.button(230, 800, 'points_btn', this.clickPointsFunct, this, 1, 0, 2);
-    var btWin = this.add.button(20, 800, 'btn_win', this.clickWinFunct, this, 1, 0, 2);
-    var btLose = this.add.button(130, 800, 'btn_lose', this.clickLoseFunct, this, 1, 0, 2);
-
     // Timer setup
-    timerSeconds = 80; // 01:20 minutes = 80 seconds
+    timerSeconds = 120; // 02:00 minutes = 120 seconds
     timerObj = this.time.create(false);
     timerObj.loop(1000, this.updateTimerFunct, this);
     timerObj.start();
   },
   update: function () {
-    // this.game.phyics.arcade.collide(this.spPlayer, this.spGround);
-
-    // if (this.leftInputIsActive()) {
-    //   spPlayer.body.velocity.x = -this.MAX_SPEED;
-    // } else if (this.rightInputIsActive()) {
-    //   spPlayer.body.velocity.x = this.MAX_SPEED;
-    // } else {
-    //   spPlayer.body.velocity.x = 0;
-    // }
-
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
       spPlayer.x -= 6;
     } else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
