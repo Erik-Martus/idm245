@@ -2,11 +2,10 @@
 var gameObj = {
   // Global variables are decleared here!
   gScore: 0,
-  gTime: "01:20"
-  // When you change this to 02:00 make sure to change it in Lose.js and Win.js
+  gTime: "02:00"
 };
 
-gameObj.Boot = function (game) {};
+gameObj.Boot = function (game) { };
 
 gameObj.Boot.prototype = {
   preload: function () {

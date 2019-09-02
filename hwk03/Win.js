@@ -6,9 +6,7 @@ gameObj.Win = function (game) {
 gameObj.Win.prototype = {
   create: function () {
     console.log('State - Win');
-    // Add bkgr img to stage
-    var spBackground = this.add.sprite(0, 0, 'background_light');
-    // ---- End bkgr img ----
+    this.stage.backgroundColor = '#5742c8';
 
     // Add scenery to stage
     var spCloud01 = this.add.sprite(77, 93, 'cloud01');
@@ -16,7 +14,6 @@ gameObj.Win.prototype = {
     var spSun = this.add.sprite(this.world.centerX, 70, 'sun');
     spSun.anchor.setTo(0.5, 0);
     var spGround = this.add.sprite(0, 939, 'ground_menu');
-    // ---- End scenery ----
 
     var spPlayer = this.add.sprite(this.world.centerX, 889, 'player');
     spPlayer.anchor.setTo(0.5, 0);
@@ -49,12 +46,12 @@ gameObj.Win.prototype = {
   },
   clickPlayAgainFunct: function () {
     gameObj.gScore = 0;
-    gameObj.gTime = "01:20";
+    gameObj.gTime = "02:00";
     this.state.start('Play');
   },
   clickMenuFunct: function () {
     gameObj.gScore = 0;
-    gameObj.gTime = "01:20";
+    gameObj.gTime = "02:00";
     this.state.start('Main');
   }
 }
