@@ -17,13 +17,14 @@ gameObj.Preloader.prototype = {
     // Load Google WebFont Loader script
     this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
+
     // load button assets
     this.load.spritesheet('back_btn', 'img/button/back_button.png', 223, 79);
     this.load.spritesheet('help_btn', 'img/button/help_button.png', 312, 152);
     this.load.spritesheet('menu_btn', 'img/button/menu_button.png', 356, 152);
     this.load.spritesheet('play_btn', 'img/button/play_button.png', 356, 170);
     this.load.spritesheet('play-again_btn', 'img/button/play-again_button.png', 654, 170);
-    this.load.spritesheet('points_btn', 'img/button/points_button.png', 220, 81);
+    this.load.spritesheet('points_btn', 'img/button/points_button.png', 220, 81, 4);
 
     // load help assets
     this.load.image('instructions', 'img/help/how_to_play.png')
@@ -34,8 +35,10 @@ gameObj.Preloader.prototype = {
     this.load.image('p-u_heat-wave', 'img/icon/power-up_heat-wave.png');
     this.load.image('p-u_umbrella', 'img/icon/power-up_umbrella.png');
     this.load.image('raindrop', 'img/icon/rain-drop.png');
-    this.load.image('heart_full', 'img/icon/heart_filled.png');
-    this.load.image('heart_empty', 'img/icon/heart_empty.png');
+    // this.load.image('heart_full', 'img/icon/heart_filled.png');
+    // this.load.image('heart_empty', 'img/icon/heart_empty.png');
+    this.load.spritesheet('hearts', 'img/icon/hearts.png', 184, 61);
+
 
     // load player assets
     this.load.image('pl_dead', 'img/player/player_broken.png');

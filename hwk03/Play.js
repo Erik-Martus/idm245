@@ -5,6 +5,7 @@ gameObj.Play = function (game) {
   var txTime;
 
   var spPlayer;
+  var hearts;
 };
 
 gameObj.Play.prototype = {
@@ -43,7 +44,6 @@ gameObj.Play.prototype = {
     var spRaindrop12 = this.add.sprite(623, 435, 'raindrop');
 
     // Add text
-    var showers = "Rain Shower: 02";
     var score = gameObj.gScore;
     var time = gameObj.gTime;
 
@@ -59,14 +59,13 @@ gameObj.Play.prototype = {
     };
 
     // Add game bar items
-    var heart01 = this.add.sprite(30, 909, 'heart_full');
-    var heart02 = this.add.sprite(88, 909, 'heart_empty');
-    var heart03 = this.add.sprite(146, 909, 'heart_empty');
-    var txShower = this.add.text(400, 920, showers, gameBarStyle);
+    hearts = this.add.sprite(15, 900, 'hearts');
+    hearts.frame = 0;
 
     // Add header text
     txScore = this.add.text(20, 14, score, headerStyle);
-    txTime = this.add.text(526, 14, time, headerStyle);
+    txTime = this.add.text(this.world.centerX, 14, time, headerStyle);
+    txTime.anchor.setTo(0.5, 0);
 
     // Timer setup
     timerSeconds = 120; // 02:00 minutes = 120 seconds
