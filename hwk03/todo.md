@@ -7,7 +7,7 @@
 - [X] Change font size of powerup titles on help screen
 - [X] Change hearts to spritesheet
 - [X] Randomly spawn raindrops and have them fall
-- [ ] Collision with a raindrop causes player to lose a heart
+- [X] Collision with a raindrop causes player to lose a heart
 - [ ] If the player loses all their hearts, go to the lose screen
 - [ ] If the timer reaches 00:00, go the the win screen
 - [ ] Randomly spawn heat wave power up

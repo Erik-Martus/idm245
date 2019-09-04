@@ -7,6 +7,7 @@ gameObj.Play = function (game) {
 
   var spPlayer;
   var hearts;
+  var heartFrame;
 };
 
 gameObj.Play.prototype = {
@@ -64,7 +65,8 @@ gameObj.Play.prototype = {
 
     // Add game bar items
     hearts = this.add.sprite(15, 900, 'hearts');
-    hearts.frame = 0;
+    heartFrame = 0;
+    hearts.frame = heartFrame;
     txScore = this.add.text(350, 915, "Points:", headerStyle);
     txScoreNum = this.add.text(705, 915, score, headerStyle);
     txScoreNum.anchor.setTo(1, 0);
@@ -95,6 +97,10 @@ gameObj.Play.prototype = {
       this.newRaindrop();
     }
   },
+  updateHearts: function () {
+    heartFrame++;
+    hearts.frame = heartFrame;
+  },
   newRaindrop: function () {
     var raindrop = this.rain.create(this.rnd.integerInRange(50, 670), 0, 'raindrop');
     raindrop.y -= raindrop.height / 2 + 1;
@@ -108,11 +114,18 @@ gameObj.Play.prototype = {
     raindrop.body.velocity.y = 500;
 
   },
-  playerHit: function () {
-    this.raindrop.kill();
+  playerHit: function (spPlayer, raindrop) {
+    if (heartFrame < 3) {
+      heartFrame++;
+      hearts.frame = heartFrame;
+    }
+    raindrop.kill();
     // if (sound) this.hitSound.play();
-
     this.lives -= 1;
+    console.log(this.lives);
+    if (this.lives === 0) {
+      console.log("Game Over");
+    }
   },
   updateTimerFunct: function () {
     timerSeconds--;
