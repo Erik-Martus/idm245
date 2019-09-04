@@ -41,10 +41,10 @@ gameObj.Play.prototype = {
     // Add scenery to stage
     var spCloud_dark01 = this.add.sprite(29, 105, 'cloud_dark01');
     var spCloud_dark02 = this.add.sprite(360, 105, 'cloud_dark02');
-    var spGround = this.add.sprite(0, 900, 'ground_game');
-    this.physics.arcade.enable(spGround);
-    spGround.enableBody = true;
-    spGround.body.immovable = true;
+    this.spGround = this.add.sprite(0, 900, 'ground_game');
+    this.physics.arcade.enable(this.spGround);
+    this.spGround.enableBody = true;
+    this.spGround.body.immovable = true;
 
 
 
@@ -90,6 +90,7 @@ gameObj.Play.prototype = {
 
     // Collisions
     this.physics.arcade.overlap(this.spPlayer, this.rain, this.playerHit, null, this);
+    this.physics.arcade.collide(this.spGround, this.rain, this.scoreFunct, null, this);
 
     // Add raindrops
     if (this.game.time.now > this.rainTime) {
@@ -102,16 +103,23 @@ gameObj.Play.prototype = {
     hearts.frame = heartFrame;
   },
   newRaindrop: function () {
-    var raindrop = this.rain.create(this.rnd.integerInRange(50, 670), 0, 'raindrop');
+    var raindrop = this.rain.create(this.rnd.integerInRange(50, 670), 300, 'raindrop');
     raindrop.y -= raindrop.height / 2 + 1;
     this.physics.arcade.enable(raindrop);
 
     raindrop.checkWorldBounds = true;
     raindrop.outOfBoundsKill = true;
 
-    raindrop.anchor.setTo(0.5, 0.5);
+    raindrop.anchor.setTo(0.5, 1);
     raindrop.scale.setTo(1, 1);
     raindrop.body.velocity.y = 500;
+
+    // if (raindrop.body.y = 900) {
+    //   gameObj.gScore++;
+    //   console.log(gameObj.gScore);
+    //   txScoreNum.text = gameObj.gScore;
+    //   // raindrop.kill();
+    // }
 
   },
   playerHit: function (spPlayer, raindrop) {
@@ -123,9 +131,17 @@ gameObj.Play.prototype = {
     // if (sound) this.hitSound.play();
     this.lives -= 1;
     console.log(this.lives);
-    if (this.lives === 0) {
-      console.log("Game Over");
+    if (this.lives == 0) {
+      this.add.tween(this.rain).to({ alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+      this.time.events.add(250, function () {
+        this.state.start('Lose');
+      }, this);
     }
+  },
+  scoreFunct: function (spGround, raindrop) {
+    gameObj.gScore++;
+    txScoreNum.text = gameObj.gScore;
+    raindrop.kill();
   },
   updateTimerFunct: function () {
     timerSeconds--;
@@ -139,17 +155,10 @@ gameObj.Play.prototype = {
     }
 
     if (timerSeconds == 0) {
-      this.checkScoreFunct();
+      this.state.start('Win');
     }
 
     gameObj.gTime = displayMin + ":" + displaySec;
     txTime.text = gameObj.gTime;
-  },
-  checkScoreFunct: function () {
-    if (gameObj.gScore > 100) {
-      this.state.start('Win');
-    } else {
-      this.state.start('Lose');
-    }
   }
 }

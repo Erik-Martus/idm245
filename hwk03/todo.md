@@ -8,8 +8,9 @@
 - [X] Change hearts to spritesheet
 - [X] Randomly spawn raindrops and have them fall
 - [X] Collision with a raindrop causes player to lose a heart
-- [ ] If the player loses all their hearts, go to the lose screen
-- [ ] If the timer reaches 00:00, go the the win screen
+- [X] If the player loses all their hearts, go to the lose screen
+- [X] Collision between raindrop and ground adds 1 point
+- [X] If the timer reaches 00:00, go the the win screen
 - [ ] Randomly spawn heat wave power up
 - [ ] Colliding with heat wave picks it up and displays on the bottom bar
 - [ ] Bind heat wave to J, pressing J will remove all raindrops from the screen
