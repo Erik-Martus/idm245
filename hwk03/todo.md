@@ -5,8 +5,8 @@
 - [X] Bind player movement to A and D
 - [X] Change font everywhere to Press 2P
 - [X] Change font size of powerup titles on help screen
-- [ ] Change hearts to spritesheet
-- [ ] Randomly spawn raindrops and have them fall
+- [X] Change hearts to spritesheet
+- [X] Randomly spawn raindrops and have them fall
 - [ ] Collision with a raindrop causes player to lose a heart
 - [ ] If the player loses all their hearts, go to the lose screen
 - [ ] If the timer reaches 00:00, go the the win screen
