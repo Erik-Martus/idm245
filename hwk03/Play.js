@@ -1,3 +1,4 @@
+// http://www.lessmilk.com/game/pixel-war-2/
 gameObj.Play = function (game) {
   var txScore;
   var timerObj;
@@ -15,33 +16,36 @@ gameObj.Play.prototype = {
 
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
+    // Add player
+    this.spPlayer = this.add.sprite(this.world.centerX, 850, 'pl_dark');
+    this.spPlayer.anchor.setTo(0.5, 0);
+    this.physics.arcade.enable(this.spPlayer);
+    this.spPlayer.body.collideWorldBounds = true;
+    this.spPlayer.body.setSize(this.spPlayer.width, this.spPlayer.height - 10, 0, 0);
+    this.lives = 3;
+
+    // Add rain
+    this.rain = this.add.group();
+    this.rainTime = this.time.now + 2000;
+
+
+    // this.rainTime = 0;
+
+    // raindrops = this.add.group();
+    // raindrops.createMultiple(25, 'raindrop');
+    // raindrops.setAll('outOfBoundsKill', true);
+    // // this.physics.arcade.enable(raindrops);
+    // raindrops.setAll('enableBody', true);
+
     // Add scenery to stage
     var spCloud_dark01 = this.add.sprite(29, 105, 'cloud_dark01');
     var spCloud_dark02 = this.add.sprite(360, 105, 'cloud_dark02');
     var spGround = this.add.sprite(0, 900, 'ground_game');
+    this.physics.arcade.enable(spGround);
+    spGround.enableBody = true;
+    spGround.body.immovable = true;
 
-    // Add player
-    spPlayer = this.add.sprite(this.world.centerX, 850, 'pl_dark');
-    spPlayer.anchor.setTo(0.5, 0);
 
-    this.physics.arcade.enable(spPlayer);
-
-    spPlayer.body.collideWorldBounds = true;
-
-    // Add game elements
-    var spHeat_wave = this.add.sprite(546, 850, 'p-u_heat-wave');
-    var spRaindrop01 = this.add.sprite(72, 455, 'raindrop');
-    var spRaindrop02 = this.add.sprite(111, 353, 'raindrop');
-    var spRaindrop03 = this.add.sprite(132, 620, 'raindrop');
-    var spRaindrop04 = this.add.sprite(170, 273, 'raindrop');
-    var spRaindrop05 = this.add.sprite(225, 321, 'raindrop');
-    var spRaindrop06 = this.add.sprite(267, 486, 'raindrop');
-    var spRaindrop07 = this.add.sprite(355, 385, 'raindrop');
-    var spRaindrop08 = this.add.sprite(427, 289, 'raindrop');
-    var spRaindrop09 = this.add.sprite(459, 494, 'raindrop');
-    var spRaindrop10 = this.add.sprite(560, 320, 'raindrop');
-    var spRaindrop11 = this.add.sprite(557, 567, 'raindrop');
-    var spRaindrop12 = this.add.sprite(623, 435, 'raindrop');
 
     // Add text
     var score = gameObj.gScore;
@@ -61,10 +65,12 @@ gameObj.Play.prototype = {
     // Add game bar items
     hearts = this.add.sprite(15, 900, 'hearts');
     hearts.frame = 0;
+    txScore = this.add.text(350, 915, "Points:", headerStyle);
+    txScoreNum = this.add.text(705, 915, score, headerStyle);
+    txScoreNum.anchor.setTo(1, 0);
 
     // Add header text
-    txScore = this.add.text(20, 14, score, headerStyle);
-    txTime = this.add.text(this.world.centerX, 14, time, headerStyle);
+    txTime = this.add.text(this.world.centerX, 30, time, headerStyle);
     txTime.anchor.setTo(0.5, 0);
 
     // Timer setup
@@ -75,21 +81,38 @@ gameObj.Play.prototype = {
   },
   update: function () {
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      spPlayer.x -= 6;
+      this.spPlayer.x -= 6;
     } else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      spPlayer.x += 6;
+      this.spPlayer.x += 6;
+    }
+
+    // Collisions
+    this.physics.arcade.overlap(this.spPlayer, this.rain, this.playerHit, null, this);
+
+    // Add raindrops
+    if (this.game.time.now > this.rainTime) {
+      this.rainTime = this.time.now + 300;
+      this.newRaindrop();
     }
   },
-  clickWinFunct: function () {
-    this.state.start('Win');
+  newRaindrop: function () {
+    var raindrop = this.rain.create(this.rnd.integerInRange(50, 670), 0, 'raindrop');
+    raindrop.y -= raindrop.height / 2 + 1;
+    this.physics.arcade.enable(raindrop);
+
+    raindrop.checkWorldBounds = true;
+    raindrop.outOfBoundsKill = true;
+
+    raindrop.anchor.setTo(0.5, 0.5);
+    raindrop.scale.setTo(1, 1);
+    raindrop.body.velocity.y = 500;
+
   },
-  clickLoseFunct: function () {
-    this.state.start('Lose');
-  },
-  clickPointsFunct: function () {
-    console.log('pointsFun called');
-    gameObj.gScore += 10;
-    txScore.text = gameObj.gScore;
+  playerHit: function () {
+    this.raindrop.kill();
+    // if (sound) this.hitSound.play();
+
+    this.lives -= 1;
   },
   updateTimerFunct: function () {
     timerSeconds--;
