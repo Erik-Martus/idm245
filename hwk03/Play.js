@@ -103,6 +103,7 @@ gameObj.Play.prototype = {
     hearts.frame = heartFrame;
   },
   newRaindrop: function () {
+
     var raindrop = this.rain.create(this.rnd.integerInRange(50, 670), 300, 'raindrop');
     raindrop.y -= raindrop.height / 2 + 1;
     this.physics.arcade.enable(raindrop);
@@ -112,7 +113,24 @@ gameObj.Play.prototype = {
 
     raindrop.anchor.setTo(0.5, 1);
     raindrop.scale.setTo(1, 1);
-    raindrop.body.velocity.y = 500;
+    if (timerSeconds <= 120 && timerSeconds > 105) { // 02:00 - 01:45
+      raindrop.body.velocity.y = 300;
+    } else if (timerSeconds <= 105 && timerSeconds > 90) { // 01:45 - 01:30
+      raindrop.body.velocity.y = 400;
+    } else if (timerSeconds <= 90 && timerSeconds > 75) { // 01:30 - 01:15
+      raindrop.body.velocity.y = 500;
+    } else if (timerSeconds <= 75 && timerSeconds > 60) { // 01:15 - 01:00
+      raindrop.body.velocity.y = 600;
+    } else if (timerSeconds <= 60 && timerSeconds > 45) { // 01:00 - 00:45
+      raindrop.body.velocity.y = 700;
+    } else if (timerSeconds <= 45 && timerSeconds > 30) { // 00:45 - 00:30
+      raindrop.body.velocity.y = 800;
+    } else if (timerSeconds <= 30 && timerSeconds > 15) { // 00:30 - 00:15
+      raindrop.body.velocity.y = 900;
+    } else if (timerSeconds <= 15) { // 00:15 - 00:00
+      raindrop.body.velocity.y = 1200;
+    }
+    console.log(raindrop.body.velocity.y);
 
     // if (raindrop.body.y = 900) {
     //   gameObj.gScore++;
