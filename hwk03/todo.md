@@ -12,8 +12,8 @@
 - [X] Collision between raindrop and ground adds 1 point
 - [X] If the timer reaches 00:00, go the the win screen
 - [X] Increase rain speed at 15 second intervals
-- [ ] Add music
-- [ ] Add hit sound effect
+- [X] Add music
+- [X] Add hit sound effect
 
 ## Version 2.0
 

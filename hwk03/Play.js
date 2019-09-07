@@ -12,7 +12,19 @@ gameObj.Play = function (game) {
 
 gameObj.Play.prototype = {
   create: function () {
-    console.log("State - Play")
+    console.log("State - Play");
+    console.log(gameObj.music);
+    this.chance = this.rnd.integerInRange(1, 10);
+    console.log(this.chance);
+    if (gameObj.music == true && this.chance == 5) {
+      this.audMusic = this.add.audio('easter');
+      this.audMusic.play();
+    } else if (gameObj.music == true && this.chance !== 5) {
+      this.audMusic = this.add.audio('music');
+      this.audMusic.play();
+    }
+
+    this.hitSound = this.add.audio('hit');
     this.stage.backgroundColor = '#330099';
 
     this.physics.startSystem(Phaser.Physics.ARCADE);
@@ -130,15 +142,6 @@ gameObj.Play.prototype = {
     } else if (timerSeconds <= 15) { // 00:15 - 00:00
       raindrop.body.velocity.y = 1200;
     }
-    console.log(raindrop.body.velocity.y);
-
-    // if (raindrop.body.y = 900) {
-    //   gameObj.gScore++;
-    //   console.log(gameObj.gScore);
-    //   txScoreNum.text = gameObj.gScore;
-    //   // raindrop.kill();
-    // }
-
   },
   playerHit: function (spPlayer, raindrop) {
     if (heartFrame < 3) {
@@ -146,12 +149,13 @@ gameObj.Play.prototype = {
       hearts.frame = heartFrame;
     }
     raindrop.kill();
-    // if (sound) this.hitSound.play();
+    this.hitSound.play();
     this.lives -= 1;
     console.log(this.lives);
     if (this.lives == 0) {
       this.add.tween(this.rain).to({ alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
       this.time.events.add(250, function () {
+        this.audMusic.stop();
         this.state.start('Lose');
       }, this);
     }
@@ -173,6 +177,7 @@ gameObj.Play.prototype = {
     }
 
     if (timerSeconds == 0) {
+      this.audMusic.stop();
       this.state.start('Win');
     }
 

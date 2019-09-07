@@ -21,6 +21,10 @@ gameObj.Main.prototype = {
     // Add buttons
     var btPlay = this.add.button(this.world.centerX, 405, 'play_btn', this.clickPlayFunct, this, 1, 0, 2);
     btPlay.anchor.setTo(0.5, 0);
+    this.btAudio = this.add.button(630, -5, 'music_btn', this.clickAudioFunct, this);
+    this.btAudio.frame = 1
+    this.btAudio.scale.setTo(0.75, 0.75);
+    console.log(gameObj.music);
 
     var btHelp = this.add.button(this.world.centerX, 580, 'help_btn', this.clickHelpFunct, this, 1, 0, 2);
     btHelp.anchor.setTo(0.5, 0);
@@ -30,5 +34,15 @@ gameObj.Main.prototype = {
   },
   clickHelpFunct: function () {
     this.state.start('Help');
+  },
+  clickAudioFunct: function () {
+    if (this.btAudio.frame == 0) {
+      this.btAudio.frame = 1;
+      gameObj.music = false;
+    } else {
+      this.btAudio.frame = 0;
+      gameObj.music = true;
+    }
+    console.log(gameObj.music)
   }
 }

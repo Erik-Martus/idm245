@@ -25,6 +25,7 @@ gameObj.Preloader.prototype = {
     this.load.spritesheet('play_btn', 'img/button/play_button.png', 356, 170);
     this.load.spritesheet('play-again_btn', 'img/button/play-again_button.png', 654, 170);
     this.load.spritesheet('points_btn', 'img/button/points_button.png', 220, 81, 4);
+    this.load.spritesheet('music_btn', 'img/button/audio_button.png', 128, 128)
 
     // load help assets
     this.load.image('instructions', 'img/help/how_to_play.png')
@@ -35,8 +36,6 @@ gameObj.Preloader.prototype = {
     this.load.image('p-u_heat-wave', 'img/icon/power-up_heat-wave.png');
     this.load.image('p-u_umbrella', 'img/icon/power-up_umbrella.png');
     this.load.image('raindrop', 'img/icon/rain-drop.png');
-    // this.load.image('heart_full', 'img/icon/heart_filled.png');
-    // this.load.image('heart_empty', 'img/icon/heart_empty.png');
     this.load.spritesheet('hearts', 'img/icon/hearts.png', 184, 61);
 
 
@@ -58,6 +57,11 @@ gameObj.Preloader.prototype = {
     this.load.image('title', 'img/rainfall_title.png');
     this.load.image('survived', 'img/you_survived.png');
     this.load.image('game_over', 'img/game_over.png')
+
+    // load audio
+    this.load.audio('music', 'audio/talkToMe.mp3');
+    this.load.audio('easter', 'audio/easterEgg.mp3');
+    this.load.audio('hit', 'audio/hit.mp3');
 
   }, // end Preload
 
